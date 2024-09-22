@@ -10,6 +10,7 @@
     "build:css": "tailwindcss -i ./src/styles/tailwind.css -o ./src/styles/output.css --watch"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.3",
     "lucide-react": "^0.441.0",
     "next": "latest",
     "react": "latest",
