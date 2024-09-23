@@ -1,4 +1,3 @@
-// pages/bfree/[phone].js
 import React, { useEffect, useRef, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { SocialIcon } from 'react-social-icons';
@@ -14,15 +13,16 @@ const ScratchCard = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const { phone } = router.query;
-    if (phone) {
-      fetchGiftInfo(phone);
+    const { brand, phone } = router.query;
+    if (brand && phone) {
+      fetchGiftInfo(brand, phone);
     }
   }, [router.query]);
 
-  const fetchGiftInfo = async (phoneNumber) => {
+  const fetchGiftInfo = async (brand, phoneNumber) => {
     try {
-      const response = await fetch(`https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec?phone=${phoneNumber}`);
+      const deploymentId = "AKfycbxXFpjNW8poqOLGlGXZhKGxAp3ZRCoQ7SJqehtKwNxwhh7rp8yiFb8hihrhiGHMMM48";
+      const response = await fetch(`https://script.google.com/macros/s/${deploymentId}/exec?phone=${phoneNumber}`);
       const data = await response.json();
       if (data.error) {
         console.error(data.error);
@@ -31,6 +31,26 @@ const ScratchCard = () => {
       }
     } catch (error) {
       console.error('Error fetching gift info:', error);
+    }
+  };
+
+  const claimGift = async (brand, phoneNumber, giftName) => {
+    try {
+      const deploymentId = "AKfycbxXFpjNW8poqOLGlGXZhKGxAp3ZRCoQ7SJqehtKwNxwhh7rp8yiFb8hihrhiGHMMM48";
+      const response = await fetch(`https://script.google.com/macros/s/${deploymentId}/exec?action=claim&phone=${phoneNumber}&gift=${giftName}`, {
+        method: 'GET',
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+      });
+      const data = await response.json();
+      if (data.error) {
+        console.error(data.error);
+      } else {
+        console.log('Gift claimed successfully:', data.message);
+      }
+    } catch (error) {
+      console.error('Error claiming gift:', error);
     }
   };
 
@@ -96,6 +116,10 @@ const ScratchCard = () => {
       setIsBlurred(true);
       triggerConfetti();
       clearCanvas();
+      const { brand, phone } = router.query;
+      if (brand && phone && giftInfo) {
+        claimGift(brand, phone, giftInfo.giftName);
+      }
     }
   };
 
