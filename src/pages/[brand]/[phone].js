@@ -21,7 +21,7 @@ const ScratchCard = () => {
 
   const fetchGiftInfo = async (brand, phoneNumber) => {
     try {
-      const deploymentId = "AKfycbxXFpjNW8poqOLGlGXZhKGxAp3ZRCoQ7SJqehtKwNxwhh7rp8yiFb8hihrhiGHMMM48";
+      const deploymentId = "AKfycbw_yADSa40JOTvOmmp5QT37XPZtqaCgA-TdhMl7ASoITVaunZ1pawsUe6K4bLze3lFR";
       const response = await fetch(`https://script.google.com/macros/s/${deploymentId}/exec?phone=${phoneNumber}`);
       const data = await response.json();
       if (data.error) {
@@ -36,7 +36,7 @@ const ScratchCard = () => {
 
   const claimGift = async (brand, phoneNumber, giftName) => {
     try {
-      const deploymentId = "AKfycbxXFpjNW8poqOLGlGXZhKGxAp3ZRCoQ7SJqehtKwNxwhh7rp8yiFb8hihrhiGHMMM48";
+      const deploymentId = "AKfycbw_yADSa40JOTvOmmp5QT37XPZtqaCgA-TdhMl7ASoITVaunZ1pawsUe6K4bLze3lFR";
       const response = await fetch(`https://script.google.com/macros/s/${deploymentId}/exec?action=claim&phone=${phoneNumber}&gift=${giftName}`, {
         method: 'GET',
         headers: {
