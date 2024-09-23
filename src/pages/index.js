@@ -15,7 +15,7 @@ const ScratchCard = () => {
     const resize = () => {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
-      ctx.fillStyle = '#AAAAAA';
+      ctx.fillStyle = '#E9C23C';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
@@ -88,22 +88,16 @@ const ScratchCard = () => {
     });
   };
 
-  const shareOnFacebook = () => {
-    const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent("I ordered from Bfree and got a prize!");
-    window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+  const followOnFacebook = () => {
+    window.open(`https://www.facebook.com/bfree.netivot?mibextid=ZbWKwL`, '_blank');
   };
   
-  const shareOnInstagram = () => {
-    const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent("I ordered from Bfree and got a prize!");
-    window.open(`https://www.instagram.com/?url=${url}&text=${text}`, '_blank');
+  const followOnInstagram = () => {
+    window.open(`https://www.instagram.com/bfree_netivot`, '_blank');
   };
   
-  const shareOnTikTok = () => {
-    const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent("I ordered from Bfree and got a prize!");
-    window.open(`https://www.tiktok.com/share?url=${url}&text=${text}`, '_blank');
+  const followOnTikTok = () => {
+    window.open(`https://www.tiktok.com/@bfree_bezeq_netivot`, '_blank');
   };
 
   return (
@@ -112,9 +106,8 @@ const ScratchCard = () => {
         <img src="/bfree-logo-removebg-preview.png" alt="Bfree Logo" className="w-36 mb-5 mx-auto" />
         <h1 className="text-5xl font-bold mb-2 shadow-text">כרטיס גירוד</h1>
         <h1 className="text-6xl font-bold mb-4 digital-text">דיגיטלי</h1>
-        <div className="text-xl mb-4">כל כרטיס זוכה</div>
-      </div>
-      <div className={`relative w-80 h-32 bg-white rounded-lg shadow-md overflow-hidden mb-5 ${isScratched ? 'animate-card' : ''}`}>
+        <div className="text-lg max-w-xs font-bold mb-2">כל כרטיס זוכה</div>      </div>
+      <div className={`relative w-80 h-32 bg-white rounded-lg shadow-md overflow-hidden mb-5 ${isScratched ? 'animate-card' : ''} hover:bg-gold`}>
         <div className={`absolute inset-0 flex items-center justify-center text-3xl font-bold text-blue-600 ${!isScratched ? 'blur-sm' : ''}`}>
           10% הנחה
         </div>
@@ -132,14 +125,14 @@ const ScratchCard = () => {
       </div>
             {isScratched && (
         <div className="flex justify-center space-x-4 mb-5 mt-4">
-          <button onClick={shareOnFacebook} className="mx-2">
-            <SocialIcon url="https://www.facebook.com" />
+          <button onClick={followOnFacebook} className="mx-2">
+            <SocialIcon url="https://www.facebook.com" target="_blank" />
           </button>
-          <button onClick={shareOnInstagram} className="mx-2">
-            <SocialIcon url="https://www.instagram.com" />
+          <button onClick={followOnInstagram} className="mx-2">
+            <SocialIcon url="https://www.instagram.com" target="_blank" />
           </button>
-          <button onClick={shareOnTikTok} className="mx-2">
-            <SocialIcon url="https://www.tiktok.com" />
+          <button onClick={followOnTikTok} className="mx-2">
+            <SocialIcon url="https://www.tiktok.com" target="_blank" />
           </button>
         </div>
       )}
@@ -152,7 +145,7 @@ const ScratchCard = () => {
             </div>
           </a>
         </div>
-        <div className="text-sm max-w-xs">
+               <div className="text-lg max-w-xs font-bold">
           רוכשים ב-200₪ ומעלה בחנות הווצאפ שלנו ומקבלים כרטיס גירוד
         </div>
       </div>
@@ -196,6 +189,9 @@ const ScratchCard = () => {
         }
         .blur-sm {
           filter: blur(5px);
+        }
+        .hover\\:bg-gold:hover {
+          background-color: gold;
         }
         @media (max-width: 640px) {
           .animate-card {
