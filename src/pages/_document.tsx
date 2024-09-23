@@ -5,8 +5,10 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          <title>כרטיס המזל של bfree</title>
+          <meta name="description" content="ררוכשים ב-200₪ ומעלה בחנות הווצאפ שלנו ומקבלים כרטיס גירוד" />
           <link rel="stylesheet" href="/styles/tailwind.css" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/bfree-logo-removebg-preview.png" />
         </Head>
         <body>
           <Main />
