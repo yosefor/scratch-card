@@ -64,10 +64,18 @@ const ScratchCard = () => {
       ctx.fillRect(0, 0, canvas.width, canvas.height);
     };
 
+    const preventDefault = (e) => e.preventDefault();
+
     resize();
     window.addEventListener('resize', resize);
+    canvas.addEventListener('touchmove', preventDefault, { passive: false });
+    canvas.addEventListener('touchstart', preventDefault, { passive: false });
 
-    return () => window.removeEventListener('resize', resize);
+    return () => {
+      window.removeEventListener('resize', resize);
+      canvas.removeEventListener('touchmove', preventDefault);
+      canvas.removeEventListener('touchstart', preventDefault);
+    };
   }, []);
 
   const startDrawing = (e) => {
